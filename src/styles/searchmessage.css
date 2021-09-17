@@ -1,0 +1,17 @@
+.search-message-title {
+  color: white;
+  font-size: 26px;
+}
+.search-message-input {
+  background-color: #202224;
+  width: 300px;
+  height: 35px;
+  border-radius: 5px;
+  color: #fff;
+  border: #202224 solid 0px;
+  padding: 10px;
+}
+.search-area-div {
+  padding: 20px;
+  border-right: #202224 solid 0.5px;
+}

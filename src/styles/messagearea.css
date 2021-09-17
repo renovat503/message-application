@@ -1,0 +1,92 @@
+.message-area-container {
+  width: 100%;
+  padding: 15px;
+  position: relative;
+  height: 600px;
+}
+.message-receiver-section {
+  width: 100%;
+  padding: 5px;
+  position: relative;
+}
+.receiver-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.receiver-name {
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  left: 70px;
+}
+.receiver-text-div {
+  background-color: #007aeb;
+  padding: 7px;
+  position: absolute;
+  top: 32px;
+  left: 70px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.receiver-text-body {
+  color: white;
+  font-size: 12px;
+}
+.receiver-text-time {
+  color: #646668;
+  font-size: 12px;
+  font-weight: bold;
+  position: absolute;
+  top: 13px;
+  left: 170px;
+  font-style: italic;
+}
+
+.message-sender-section {
+  width: 100%;
+  padding: 5px;
+  position: relative;
+}
+
+.sender-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  right: 0px;
+}
+
+.sender-name-ta {
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  position: absolute;
+  right: 70px;
+}
+.sender-text-div {
+  background-color: #202224;
+  padding: 7px;
+  position: absolute;
+  top: 32px;
+  right: 70px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.sender-text-body {
+  color: white;
+  font-size: 12px;
+}
+.sender-text-time {
+  color: #646668;
+  font-size: 12px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 180px;
+  font-style: italic;
+}

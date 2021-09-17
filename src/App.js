@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import NavBar from './components/navbar';
+import MessageArea from './components/messagearea';
+import NewMessage from './components/newmessage';
+import FormArea from './components/formarea';
+import SearchMessage from './components/searchmessage';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  state = {
+    notifications : 4 
+  }
+  render() { 
+    return ( 
+
+          <div class="container">
+            <div class="row">
+              <NavBar notifications = {this.state.notifications}/>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <SearchMessage />
+                <NewMessage />
+              </div>
+              <div class="col">
+                <MessageArea />
+                <div class="row">
+              <FormArea />
+            </div>
+    
+              </div>
+              
+              </div>
+            </div>
+      );
+  }
 }
-
+ 
 export default App;

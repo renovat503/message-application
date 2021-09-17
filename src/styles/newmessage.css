@@ -1,0 +1,73 @@
+.message-container {
+  width: 100%;
+  background-color: #161819;
+  padding: 10px;
+  border-right: #202224 solid 0.5px;
+  height: 700px;
+  overflow: auto;
+}
+.message {
+  width: 100%;
+  margin-bottom: 15px;
+  position: relative;
+  padding: 10px;
+}
+.message-profile-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.user-status {
+  width: 15px;
+  height: 15px;
+  background-color: #71cf98;
+  position: absolute;
+  top: 48px;
+  left: 42px;
+  border-radius: 50%;
+}
+.sender-name {
+  position: absolute;
+  top: 20px;
+  left: 75px;
+  color: #c2c1c4;
+  font-weight: bold;
+  font-size: 16px;
+}
+.message-descriptions {
+  position: absolute;
+  top: 40px;
+  left: 75px;
+  color: #646668;
+  font-size: 14px;
+}
+.message-count-div {
+  width: 20px;
+  height: 20px;
+  background-color: #007aeb;
+  position: absolute;
+  top: 40px;
+  right: 5px;
+  border-radius: 50%;
+}
+.time-elapsed {
+  position: absolute;
+  top: 20px;
+  right: 5px;
+  color: #646668;
+  font-size: 14px;
+}
+.message-count {
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  position: absolute;
+  top: 4px;
+  left: 6px;
+}
+.active {
+  border-radius: 7px;
+  background-color: #202224;
+  border: #007aeb solid 0.5px;
+  position: relative;
+}
