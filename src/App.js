@@ -1,39 +1,33 @@
 import React, { Component } from 'react';
-import NavBar from './components/navbar';
-import MessageArea from './components/messagearea';
-import NewMessage from './components/newmessage';
-import FormArea from './components/formarea';
-import SearchMessage from './components/searchmessage';
+import { Route } from 'react-router';
+import AppMain from './components/app-main';
+import Login from './components/login';
+import Register from './components/register';
+import {auth} from './firebase.js';
+import {useAuthState} from 'react-firebase-hooks/auth';
 
-class App extends Component {
 
-  state = {
-    notifications : 4 
-  }
-  render() { 
-    return ( 
 
-          <div class="container">
-            <div class="row">
-              <NavBar notifications = {this.state.notifications}/>
-            </div>
-            <div class="row">
-              <div class="col-4">
-                <SearchMessage />
-                <NewMessage />
-              </div>
-              <div class="col">
-                <MessageArea />
-                <div class="row">
-              <FormArea />
-            </div>
+const App = () => {
+
+  const [user] = useAuthState(auth);
+  return ( 
     
-              </div>
-              
-              </div>
-            </div>
+
+      <React.Fragment>
+
+          { user ? <AppMain /> : <Login /> }
+
+          </React.Fragment>
+          
       );
   }
-}
  
 export default App;
+
+
+
+
+
+
+

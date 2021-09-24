@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import '../styles/navbar.css';
 import image1 from '../images/user3.jpeg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { auth } from '../firebase';
 class NavBar extends Component {
     state = {  }
     render() { 
@@ -13,7 +14,7 @@ class NavBar extends Component {
                     <div className ="nav-wrap">
 
                         <div className ="nav-drop">
-                            <FontAwesomeIcon className= "nav-icons"icon={faCaretDown} />
+                            <FontAwesomeIcon onClick={() => auth.signOut()}className= "nav-icons"icon={faSignOutAlt} />
                         </div> 
                         <div className ="nav-profile-pic">
                             <img className = "profile-picture" src ={image1} />
