@@ -22,7 +22,6 @@ class AppMain extends React.Component {
               <div class="col">
                 <MessageArea />
                 <div class="row">
-                    <SendMessage/>
             </div>
     
               </div>

@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState } from 'react';
 import firebase from 'firebase';
-import { db ,auth} from '../firebase.js';
+import { db , auth} from '../firebase.js';
 import '../styles/formarea.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
-function SendMessage(){
+
+function SendMessage({scroll}){
 
     const [msg , setMsg] = useState('');
 
@@ -13,7 +14,7 @@ function SendMessage(){
         e.preventDefault();
         const {uid , photoURL} = auth.currentUser;
 
-        await db.collection('messages').add({
+        await db.collection('messages01').add({
             text : msg,
             photoURL,
             uid,
@@ -22,6 +23,7 @@ function SendMessage(){
         })
 
         setMsg('');
+        scroll.current.scrollIntoView({behavior : 'smooth'});
 
 
     }
