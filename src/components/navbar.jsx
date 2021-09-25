@@ -17,7 +17,7 @@ class NavBar extends Component {
                             <FontAwesomeIcon onClick={() => auth.signOut()}className= "nav-icons"icon={faSignOutAlt} />
                         </div> 
                         <div className ="nav-profile-pic">
-                            <img className = "profile-picture" src ={image1} />
+                            <img className = "profile-picture" src ={auth.currentUser.photoURL} />
                         </div> 
                         <div className ="nav-notifications">
                             <FontAwesomeIcon className= "nav-icons"icon={faBell} />

@@ -18,6 +18,7 @@ function SendMessage({scroll}){
             text : msg,
             photoURL,
             uid,
+            username : auth.currentUser.displayName,
             createdAt : firebase.firestore.FieldValue.serverTimestamp()
 
         })

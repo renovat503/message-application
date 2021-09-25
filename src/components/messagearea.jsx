@@ -19,17 +19,15 @@ import SendMessage from '../components/sendmessage';
 
     }, [])
 
-    console.log(messages);
-
     return(
         <div>
         <div className="message-area-container ">
-            {messages.map(({id,text,photoURL,uid}) => (
+            {messages.map(({id,text,photoURL,uid,username}) => (
 
             
                     <div className={` ${uid === auth.currentUser.uid ? "message-receiver-section " : "message-sender-section "}`} key={id}>
 
-                        <span className={` ${uid === auth.currentUser.uid ? "receiver-name" : "sender-name-ta"}`}>Fox Green</span>
+                        <span className={` ${uid === auth.currentUser.uid ? "receiver-name" : "sender-name-ta"}`}>{username}</span>
                         <span className={` ${uid === auth.currentUser.uid ? "receiver-text-time " : "sender-text-time "}`}>8:34</span>
                         <img className={` ${uid === auth.currentUser.uid ? "receiver-picture " : "sender-picture "}`} src={photoURL} />
                         <div className={` ${uid === auth.currentUser.uid ? "receiver-text-div " : "sender-text-div "}`}>
