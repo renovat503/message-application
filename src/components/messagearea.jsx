@@ -2,27 +2,27 @@ import React, { useState , useEffect,useRef } from 'react';
 import  { db , auth } from '../firebase.js';
 import '../styles/messagearea.css';
 import SendMessage from '../components/sendmessage';
+import CurrentUser from '../components/currentuser';
 
- function MessageArea(){
+ function MessageArea(props){
+
+
+    let key = props.user;
+    const dataFromMain = props.data;
+    const scroll = useRef();
+    
+    
 
     
-    const scroll = useRef();
-    const [messages , setMessages] = useState([]);
-
-    useEffect(() => {
-
-        db.collection('messages01').orderBy('createdAt').limit(50).onSnapshot(snapshot => {
-            
-            setMessages(snapshot.docs.map(doc => doc.data()));
-
-        })
-
-    }, [])
 
     return(
         <div>
+
+        <CurrentUser data={dataFromMain}id={key}/>
+
         <div className="message-area-container ">
-            {messages.map(({id,text,photoURL,uid,username}) => (
+        <h1>{key}</h1>
+            {dataFromMain.map(({id,text,photoURL,uid,username}) => (
 
             
                     <div className={` ${uid === auth.currentUser.uid ? "message-receiver-section " : "message-sender-section "}`} key={id}>

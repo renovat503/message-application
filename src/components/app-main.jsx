@@ -1,34 +1,45 @@
-import React, { Component } from 'react';
+import React, { useState,useEffect}from 'react';
 import  { db } from '../firebase.js';
 import NavBar from '../components/navbar';
 import SearchMessage  from '../components/searchmessage';
 import NewMessage  from '../components/newmessage';
 import MessageArea  from '../components/messagearea';
 
-class AppMain extends React.Component {
-    
-  state = {
-    notifications: 4,
-    messages: []
-  }
+function AppMain (){
 
 
-    render() { 
-      
-      console.log(this.state.messages);
+  const [messages , setMessages] = useState([]);
+  useEffect(() => {
 
-         return <React.Fragment>
+    db.collection('messages02').orderBy('createdAt').limit(50).onSnapshot(snapshot => {
+    setMessages(snapshot.docs.map(doc => doc.data()));
+
+})
+
+}, [])
+
+
+  let [user , setCurrentUser] = useState([]);
+
+  useEffect((uid) => {
+    setCurrentUser(user = uid);
+  }, [])
+
+
+
+         return (
+         <React.Fragment>
             <div class="container">
             <div class="row">
-              <NavBar notifications = {this.state.notifications}/>
+              <NavBar />
             </div>
             <div class="row">
               <div class="col-4">
                 <SearchMessage />
-                <NewMessage mess={this.state.messages} notifications={this.state.notifications} />
+                <NewMessage data={messages} currentUser={setCurrentUser} />
               </div>
               <div class="col">
-                <MessageArea />
+                <MessageArea data={messages}user={user}/>
                 <div class="row">
             </div>
     
@@ -36,8 +47,8 @@ class AppMain extends React.Component {
               
               </div>
                </div>
-            </React.Fragment>;
+            </React.Fragment>
+         )
     }
-  }
  
 export default AppMain;

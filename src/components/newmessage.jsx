@@ -1,38 +1,24 @@
 import React, { useState,useEffect} from 'react';
 import '../styles/newmessage.css';
-import  { db } from '../firebase.js';
 
 function NewMessage(props) {
 
-    console.log(props.mess);
-
-    const [messages , setMessages] = useState([]);
-    useEffect(() => {
-
-            db.collection('messages01').orderBy('createdAt').limit(50).onSnapshot(snapshot => {
-            setMessages(snapshot.docs.map(doc => doc.data()));
-
-        })
-
-    }, [])
-
     const key = 'uid';
+    const messages = (props.data);
 
     const unique = [...new Map(messages.map(item =>
     [item[key], item])).values()];
 
-    function handleClick(uid){
-        alert(uid);
-    };
 
 
         return ( 
+
             <React.Fragment>
                 <div className = "message-container">
 
                     {unique.map(({text,photoURL,username,uid}) => (
                         
-                        <div onClick={() =>handleClick(uid)} className ="message">
+                        <div onClick={() =>props.currentUser(uid)} className ="message">
                         <img className = "message-profile-picture"src={photoURL} />
                         <div className = "user-status">
                         </div>
@@ -49,6 +35,7 @@ function NewMessage(props) {
                     
                      </div>
             </React.Fragment>
+            
          );
     }
 
