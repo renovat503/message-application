@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import firebase from 'firebase';
 import '../styles/login.css';
 import {auth} from '../firebase.js';
 
 
 class Login extends React.Component {
-
-
 
     render() {
 

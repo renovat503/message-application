@@ -1,9 +1,9 @@
-import React, { useState,useEffect} from 'react';
+import React from 'react';
 import '../styles/newmessage.css';
 
 function NewMessage(props) {
 
-    const key = 'uid';
+    const key = "uid";
     const messages = (props.data);
 
     const unique = [...new Map(messages.map(item =>
@@ -19,7 +19,7 @@ function NewMessage(props) {
                     {unique.map(({text,photoURL,username,uid}) => (
                         
                         <div onClick={() =>props.currentUser(uid)} className ="message">
-                        <img className = "message-profile-picture"src={photoURL} />
+                        <img alt=""className = "message-profile-picture"src={photoURL} />
                         <div className = "user-status">
                         </div>
                         <div className = "message-count-div">

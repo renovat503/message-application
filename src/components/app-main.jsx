@@ -1,4 +1,4 @@
-import React, { useState,useEffect}from 'react';
+import React, { useState,useEffect} from 'react';
 import  { db } from '../firebase.js';
 import NavBar from '../components/navbar';
 import SearchMessage  from '../components/searchmessage';
@@ -9,9 +9,10 @@ function AppMain (){
 
 
   const [messages , setMessages] = useState([]);
+
   useEffect(() => {
 
-    db.collection('messages02').orderBy('createdAt').limit(50).onSnapshot(snapshot => {
+    db.collection('messages02').orderBy('createdAt').limit(200).onSnapshot(snapshot => {
     setMessages(snapshot.docs.map(doc => doc.data()));
 
 })
@@ -19,10 +20,15 @@ function AppMain (){
 }, [])
 
 
-  let [user , setCurrentUser] = useState([]);
+  let [user = "KvMFMR9VtsQIeBLuk17Qa1omtV92" , setCurrentUser] = useState();
 
-  useEffect((uid) => {
-    setCurrentUser(user = uid);
+  useEffect(() => {
+    setCurrentUser = (uid)=>{
+
+      user = uid;
+
+
+    }
   }, [])
 
 
@@ -36,7 +42,7 @@ function AppMain (){
             <div class="row">
               <div class="col-4">
                 <SearchMessage />
-                <NewMessage data={messages} currentUser={setCurrentUser} />
+                <NewMessage data={messages} myId={user} currentUser={setCurrentUser} />
               </div>
               <div class="col">
                 <MessageArea data={messages}user={user}/>

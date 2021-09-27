@@ -1,30 +1,31 @@
-import React ,{ useState,useEffect}from 'react';
-import  { db } from '../firebase.js';
+import React ,{useState}from 'react';
 import '../styles/currentuser.css';
 
 const CurrentUser = (props) => {
 
     
     let id = props.id;
-    const dataFromNewMessage = props.data;
+    let dataFromMessage = props.data;
 
-    const user = [...dataFromNewMessage];
-    const unique = [...new Map(user.map(item =>
-        [item[id], item])).values()];
+    let [user , setUser] = useState([id]);
+    setUser=()=>{
+        user = id;
+    }
+    
 
-    return (
+    const unique = [...new Map(dataFromMessage.map(item =>
+    [item[user], item])).values()];
+
+ return (
         <div>
+            {unique.map(({photoURL,uid}) => (
 
-        {unique.map(({photoURL,username,text}) => (
+                <div key={uid} className="main-container">
+                        <img className="image"src={photoURL} />
+                        <span className="status">{uid}</span>
+                    </div>
+            ))}
 
-            <div className="main-container">
-                    <img className="image"src={photoURL} />
-                    <span className="name">{username}</span>
-                    <span className="status">{text}</span>
-                </div>
-
-
-        ))}
         </div>
 
      );

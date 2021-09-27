@@ -10,22 +10,30 @@ import CurrentUser from '../components/currentuser';
     let key = props.user;
     const dataFromMain = props.data;
     const scroll = useRef();
-    
-    
 
-    
+    const [messages , setMessages] = useState([]);
 
+  useEffect(() => {
+
+    db.collection('messages02').orderBy('createdAt').limit(200).onSnapshot(snapshot => {
+        setMessages(snapshot.docs.map(doc => doc.data()));
+
+})
+
+}, [])
+    
     return(
         <div>
 
-        <CurrentUser data={dataFromMain}id={key}/>
+            <CurrentUser data={dataFromMain} id={key}/>
 
         <div className="message-area-container ">
         <h1>{key}</h1>
-            {dataFromMain.map(({id,text,photoURL,uid,username}) => (
+        <h1>{auth.currentUser.uid}</h1>
+            {messages.map(({id,text,photoURL,uid,username}) => (
 
             
-                    <div className={` ${uid === auth.currentUser.uid ? "message-receiver-section " : "message-sender-section "}`} key={id}>
+                    <div key={uid} className={` ${uid === auth.currentUser.uid ? "message-receiver-section " : "message-sender-section "}`} key={id}>
 
                         <span className={` ${uid === auth.currentUser.uid ? "receiver-name" : "sender-name-ta"}`}>{username}</span>
                         <span className={` ${uid === auth.currentUser.uid ? "receiver-text-time " : "sender-text-time "}`}>8:34</span>
@@ -46,9 +54,6 @@ import CurrentUser from '../components/currentuser';
         </div>
     </div>
     )
-
-
-
 
     }
  

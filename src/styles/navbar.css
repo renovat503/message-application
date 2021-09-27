@@ -3,32 +3,35 @@
   height: 50px;
   background-color: #161819;
   position: relative;
-  padding: 5px;
   border-bottom: #202224 solid 0.5px;
 }
 .nav-wrap {
   width: 170px;
   position: absolute;
-  right: 5%;
-  height: 40px;
+  right: 5px;
+  top: -10px;
+  height: 10px;
 }
 .nav-drop {
   width: 50px;
   height: 40px;
   position: absolute;
   right: 0px;
+  top: 0px;
 }
 .nav-profile-pic {
   width: 40px;
   height: 40px;
   position: absolute;
-  right: 60px;
+  right: 65px;
+  top: -5px;
 }
 .nav-notifications {
   width: 50px;
   height: 40px;
   position: absolute;
   right: 120px;
+  top: 0px;
 }
 .nav-icons {
   font-size: 22px;

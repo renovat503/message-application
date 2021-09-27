@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../styles/navbar.css';
-import image1 from '../images/user3.jpeg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
