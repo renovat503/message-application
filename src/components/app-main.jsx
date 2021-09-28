@@ -20,7 +20,7 @@ function AppMain (){
 }, [])
 
 
-  let [user = "KvMFMR9VtsQIeBLuk17Qa1omtV92" , setCurrentUser] = useState();
+  let [user = "gKlcEMxFNaaI9skq5fPDhTJkOWo1" , setCurrentUser] = useState();
 
   useEffect(() => {
     setCurrentUser = (uid)=>{

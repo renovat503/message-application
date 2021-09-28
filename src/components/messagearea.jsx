@@ -7,7 +7,12 @@ import CurrentUser from '../components/currentuser';
  function MessageArea(props){
 
 
-    let key = props.user;
+    const [key , setKey] = useState(props.user);
+
+    if(props.user !== key) setKey(props.user);
+    
+    let to = key;
+    let me = auth.currentUser.uid;
     const dataFromMain = props.data;
     const scroll = useRef();
 
@@ -15,21 +20,22 @@ import CurrentUser from '../components/currentuser';
 
   useEffect(() => {
 
-    db.collection('messages02').orderBy('createdAt').limit(200).onSnapshot(snapshot => {
+    db.collection('messages02').where('uid','==',to).orderBy('createdAt').limit(200).onSnapshot(snapshot => {
         setMessages(snapshot.docs.map(doc => doc.data()));
 
 })
 
-}, [])
+}, [to])
     
     return(
         <div>
 
-            <CurrentUser data={dataFromMain} id={key}/>
+            <CurrentUser mess={messages}data={dataFromMain} id={to}/>
 
         <div className="message-area-container ">
-        <h1>{key}</h1>
-        <h1>{auth.currentUser.uid}</h1>
+        <h1>{'to'+' '+to}</h1>
+        <h1>{'key'+' '+key}</h1>
+        <h1>{me}</h1>
             {messages.map(({id,text,photoURL,uid,username}) => (
 
             
@@ -50,7 +56,7 @@ import CurrentUser from '../components/currentuser';
             <div ref={scroll}></div>
         </div>
         <div className="send-message-c">
-            <SendMessage scroll={scroll} />
+            <SendMessage to={key}scroll={scroll} />
         </div>
     </div>
     )

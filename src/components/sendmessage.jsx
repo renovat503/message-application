@@ -5,9 +5,11 @@ import '../styles/formarea.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
-function SendMessage({scroll}){
+function SendMessage(props){
 
     const [msg , setMsg] = useState('');
+    const to = props.to;
+    const scroll = props.scroll;
 
     async function sendMessage(e){
 
@@ -18,6 +20,7 @@ function SendMessage({scroll}){
             text : msg,
             photoURL,
             uid,
+            to:to,
             username : auth.currentUser.displayName,
             createdAt : firebase.firestore.FieldValue.serverTimestamp()
 

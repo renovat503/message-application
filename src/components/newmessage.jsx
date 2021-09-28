@@ -18,7 +18,7 @@ function NewMessage(props) {
 
                     {unique.map(({text,photoURL,username,uid}) => (
                         
-                        <div onClick={() =>props.currentUser(uid)} className ="message">
+                        <div key={uid} onClick={() =>props.currentUser(uid)} className ="message">
                         <img alt=""className = "message-profile-picture"src={photoURL} />
                         <div className = "user-status">
                         </div>
