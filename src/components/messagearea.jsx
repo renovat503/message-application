@@ -16,34 +16,54 @@ import CurrentUser from '../components/currentuser';
     const dataFromMain = props.data;
     const scroll = useRef();
 
+    //Query One
     const [messages , setMessages] = useState([]);
 
   useEffect(() => {
 
-    db.collection('messages02').where('uid','==',to).orderBy('createdAt').limit(200).onSnapshot(snapshot => {
+    db.collection('messages02').orderBy('createdAt').limit(1000).onSnapshot(snapshot => {
         setMessages(snapshot.docs.map(doc => doc.data()));
 
 })
 
 }, [to])
+
+//Query Two
+const [messagesTwo , setMessagesTwo] = useState([]);
+
+  useEffect(() => {
+
+    db.collection('messages02').where('uid','==',to).where('to','==',to).orderBy('createdAt').limit(1000).onSnapshot(snapshot => {
+     setMessagesTwo(snapshot.docs.map(doc => doc.data()));
+
+})
+
+}, [to])
+
+//Merging results
+let data = messages.concat(messagesTwo);
+let data1 = data.sort();
+
+
+
+
     
     return(
         <div>
 
-            <CurrentUser mess={messages}data={dataFromMain} id={to}/>
+            <CurrentUser mess={messages}data={messages} id={to}/>
 
         <div className="message-area-container ">
-        <h1>{'to'+' '+to}</h1>
-        <h1>{'key'+' '+key}</h1>
-        <h1>{me}</h1>
-            {messages.map(({id,text,photoURL,uid,username}) => (
+            {messages.map(({text,photoURL,uid,username}) => (
 
             
-                    <div key={uid} className={` ${uid === auth.currentUser.uid ? "message-receiver-section " : "message-sender-section "}`} key={id}>
+                    <div key={uid} className={` ${uid === auth.currentUser.uid ? "message-receiver-section " : "message-sender-section "}`} key={to}>
 
-                        <span className={` ${uid === auth.currentUser.uid ? "receiver-name" : "sender-name-ta"}`}>{username}</span>
-                        <span className={` ${uid === auth.currentUser.uid ? "receiver-text-time " : "sender-text-time "}`}>8:34</span>
                         <img className={` ${uid === auth.currentUser.uid ? "receiver-picture " : "sender-picture "}`} src={photoURL} />
+                        <div className ={` ${uid === auth.currentUser.uid ? "bar" : "bar-sender"}`}>
+                            <h6 className={` ${uid === auth.currentUser.uid ? "receiver-name" : "sender-name-ta"}`}>{username}</h6>
+                            <h6 className={` ${uid === auth.currentUser.uid ? "receiver-text-time " : "sender-text-time "}`}>8:34</h6>
+                        </div>
                         <div className={` ${uid === auth.currentUser.uid ? "receiver-text-div " : "sender-text-div "}`}>
                             <span className={` ${uid === auth.currentUser.uid ? "receiver-text-body " : "sender-text-body "}`}>{text}</span>
                         </div>

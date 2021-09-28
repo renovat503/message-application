@@ -3,7 +3,7 @@
   background-color: #161819;
   padding: 10px;
   border-right: #202224 solid 0.5px;
-  height: 700px;
+  height: 600px;
   overflow: auto;
 }
 .message {
@@ -70,4 +70,12 @@
   background-color: #202224;
   border: #007aeb solid 0.5px;
   position: relative;
+}
+.message:hover {
+  width: 100%;
+  margin-bottom: 15px;
+  position: relative;
+  padding: 10px;
+  background-color: #202224;
+  border-radius: 7px;
 }
