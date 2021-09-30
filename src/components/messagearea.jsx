@@ -8,20 +8,23 @@ import { HashRouter } from 'react-router-dom';
 
  function MessageArea(props){
 
-
+    const scroll = useRef();
     const [key , setKey] = useState(props.user);
 
     if(props.user !== key) setKey(props.user);
-
-    
+   
     let to = key;
     let me = auth.currentUser.uid;
-    const scroll = useRef();
+    
 
     //chatId initialization
 
     let outGoing = me + key;
     let inComing = key + me;
+    
+
+    
+    
 
 
 
@@ -71,12 +74,14 @@ import { HashRouter } from 'react-router-dom';
             ))}
             
             <div ref={scroll}></div>
+           
         </div>
         <div className="send-message-c">
             <SendMessage toTwo={inComing}to={outGoing}scroll={scroll} />
         </div>
     </div>
     )
+
 
     }
  
