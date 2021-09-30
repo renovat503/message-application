@@ -3,6 +3,8 @@ import  { db , auth } from '../firebase.js';
 import '../styles/messagearea.css';
 import SendMessage from '../components/sendmessage';
 import CurrentUser from '../components/currentuser';
+import { HashRouter } from 'react-router-dom';
+
 
  function MessageArea(props){
 
@@ -10,54 +12,49 @@ import CurrentUser from '../components/currentuser';
     const [key , setKey] = useState(props.user);
 
     if(props.user !== key) setKey(props.user);
+
     
     let to = key;
     let me = auth.currentUser.uid;
-    const dataFromMain = props.data;
     const scroll = useRef();
 
-    //Query One
+    //chatId initialization
+
+    let outGoing = me + key;
+    let inComing = key + me;
+
+
+
+
+
+    //Query One && Query two
     const [messages , setMessages] = useState([]);
+    const queryOne = db.collection('messages02').where('to','in',[outGoing,inComing]).orderBy('createdAt').limit(1000);
+    
+
 
   useEffect(() => {
 
-    db.collection('messages02').orderBy('createdAt').limit(1000).onSnapshot(snapshot => {
-        setMessages(snapshot.docs.map(doc => doc.data()));
+    queryOne.onSnapshot(snapshot => {
+    setMessages(snapshot.docs.map(doc => doc.data()));
 
 })
 
-}, [to])
-
-//Query Two
-const [messagesTwo , setMessagesTwo] = useState([]);
-
-  useEffect(() => {
-
-    db.collection('messages02').where('uid','==',to).where('to','==',to).orderBy('createdAt').limit(1000).onSnapshot(snapshot => {
-     setMessagesTwo(snapshot.docs.map(doc => doc.data()));
-
-})
-
-}, [to])
-
-//Merging results
-let data = messages.concat(messagesTwo);
-let data1 = data.sort();
-
-
+}, [outGoing])
 
 
     
     return(
+        
         <div>
-
-            <CurrentUser mess={messages}data={messages} id={to}/>
+            <h1></h1>
+            <CurrentUser data={messages} id={to}/>
 
         <div className="message-area-container ">
             {messages.map(({text,photoURL,uid,username}) => (
 
             
-                    <div key={uid} className={` ${uid === auth.currentUser.uid ? "message-receiver-section " : "message-sender-section "}`} key={to}>
+                    <div className={` ${uid === auth.currentUser.uid ? "message-receiver-section " : "message-sender-section "}`} key={uid}>
 
                         <img className={` ${uid === auth.currentUser.uid ? "receiver-picture " : "sender-picture "}`} src={photoURL} />
                         <div className ={` ${uid === auth.currentUser.uid ? "bar" : "bar-sender"}`}>
@@ -76,7 +73,7 @@ let data1 = data.sort();
             <div ref={scroll}></div>
         </div>
         <div className="send-message-c">
-            <SendMessage to={key}scroll={scroll} />
+            <SendMessage toTwo={inComing}to={outGoing}scroll={scroll} />
         </div>
     </div>
     )

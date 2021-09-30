@@ -9,6 +9,7 @@ function SendMessage(props){
 
     const [msg , setMsg] = useState('');
     const to = props.to;
+    const toTwo = props.toTwo;
     const scroll = props.scroll;
 
     async function sendMessage(e){
@@ -21,6 +22,7 @@ function SendMessage(props){
             photoURL,
             uid,
             to:to,
+            totwo:toTwo,
             username : auth.currentUser.displayName,
             createdAt : firebase.firestore.FieldValue.serverTimestamp()
 

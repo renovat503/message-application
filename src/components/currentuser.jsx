@@ -5,7 +5,7 @@ const CurrentUser = (props) => {
 
     
     let id = props.id;
-    let dataFromMessage = props.mess;
+    let dataFromMessage = props.data;
 
      const unique = [...new Map(dataFromMessage.map(item =>
         [item[id], item])).values()];
@@ -17,7 +17,7 @@ const CurrentUser = (props) => {
                 <div key={uid} className="main-container">
                         <img className="image"src={photoURL} />
                         <span className="username">{username}</span>
-                        <span className="status">online</span>
+                        <span className="status">{id}</span>
                     </div>
             ))}
 
